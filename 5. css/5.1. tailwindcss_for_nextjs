@@ -1,0 +1,163 @@
+## Tailwind CSS Flexbox Guide
+
+This guide covers essential Tailwind CSS flexbox utilities, including how to manipulate the layout of flex items using properties such as `flex-direction`, `justify-content`, `align-items`, `order`, `self`, and `align-content`. We also cover practical examples of how to manage the main and cross axes using `align-items` and `justify-content`, along with practicing flexbox for JSX elements in **Next.js 14**.
+
+## Table of Contents
+- [Understanding Main Axis and Cross Axis](#understanding-main-axis-and-cross-axis)
+- [Flex Direction](#flex-direction)
+- [Justify Content](#justify-content)
+- [Align Items](#align-items)
+- [Order](#order)
+- [Self Alignment](#self-alignment)
+- [Flex Wrap](#flex-wrap)
+- [Align Content](#align-content)
+- [Example: Combination of Utilities](#example-combination-of-utilities)
+- [Examples of Aligning with Main and Cross Axes](#examples-of-aligning-with-main-and-cross-axes)
+- [Practice Flexbox](#practice-flexbox)
+
+## Understanding Main Axis and Cross Axis
+
+- **Main Axis**: The direction in which the flex container's children are placed. 
+  - It is **horizontal** when using `flex-row` or `flex-row-reverse` (default).
+  - It is **vertical** when using `flex-col` or `flex-col-reverse`.
+
+- **Cross Axis**: The direction perpendicular to the main axis.
+  - When the main axis is **horizontal** (in a row), the cross axis is **vertical**.
+  - When the main axis is **vertical** (in a column), the cross axis is **horizontal**.
+
+---
+
+## Flex Direction
+`flex-direction` controls the main axis of the flex container and how the flex items are laid out.
+
+- `flex-row`: Lays out items horizontally.
+- `flex-row-reverse`: Lays out items horizontally in reverse order.
+- `flex-col`: Lays out items vertically.
+- `flex-col-reverse`: Lays out items vertically in reverse order.
+
+---
+
+## Justify Content
+`justify-content` aligns flex items along the main axis (determined by `flex-direction`):
+
+- `justify-start`: Aligns items to the start of the main axis.
+- `justify-center`: Centers items along the main axis.
+- `justify-end`: Aligns items to the end of the main axis.
+- `justify-between`: Distributes items evenly with space between them.
+- `justify-around`: Distributes items with space around them.
+- `justify-evenly`: Distributes items with equal space between and around them.
+
+---
+
+## Align Items
+`align-items` aligns flex items along the cross axis (perpendicular to the main axis):
+
+- `items-start`: Aligns items to the start of the cross axis.
+- `items-center`: Centers items along the cross axis.
+- `items-end`: Aligns items to the end of the cross axis.
+- `items-baseline`: Aligns items along their baselines.
+- `items-stretch`: Stretches items to fill the cross axis.
+
+---
+
+## Order
+`order` allows you to change the order of flex items without modifying the HTML markup:
+
+- `order-{number}`: Changes the position of an item. Higher numbers move the item further back in the layout.
+
+---
+
+## Self Alignment
+`self` utilities let you override the alignment of a single flex item:
+
+- `self-start`: Aligns the item to the start of the cross axis.
+- `self-center`: Centers the item along the cross axis.
+- `self-end`: Aligns the item to the end of the cross axis.
+- `self-stretch`: Stretches the item to fill the cross axis.
+
+---
+
+## Flex Wrap
+`flex-wrap` controls how flex items behave when there isn’t enough space:
+
+- `flex-wrap`: Allows items to wrap onto multiple lines.
+- `flex-wrap-reverse`: Wraps items onto multiple lines, but in reverse order.
+
+---
+
+## Align Content
+`align-content` aligns rows of flex items when they wrap onto multiple lines:
+
+- `content-start`: Packs rows to the start of the cross axis.
+- `content-center`: Centers the rows along the cross axis.
+- `content-end`: Packs rows to the end of the cross axis.
+- `content-between`: Distributes rows with equal space between them.
+- `content-around`: Distributes rows with equal space around them.
+- `content-evenly`: Distributes rows with equal space between and around them, but accounts for the extra space between items.
+
+---
+
+## Example: Combination of Utilities
+Here’s an example of using multiple flex utilities together:
+
+```html
+<div class="flex flex-wrap-reverse justify-center content-center">
+  <div class="flex-1 order-2">Item 1</div>
+  <div class="flex-1 order-1">Item 2</div>
+  <div class="flex-1 order-3">Item 3</div>
+</div>
+
+
+In this example:
+- `flex-wrap-reverse` makes the items wrap in reverse order.
+- `justify-center` centers the flex items horizontally.
+- `content-center` centers the rows of items vertically.
+- Individual items are reordered using the `order` class.
+
+---
+
+## Examples of Aligning with Main and Cross Axes
+
+### Example 1: Using `align-items` (Main Axis = Vertical, Cross Axis = Horizontal)
+
+In this example, the main axis is **vertical** (using `flex-col`), and the `align-items` property aligns flex items along the **horizontal** (cross axis).
+
+```html
+<div class="flex flex-col items-center">
+  <div class="self-start bg-blue-200 p-4">Item 1 (aligned to start)</div>
+  <div class="self-center bg-green-200 p-4">Item 2 (centered)</div>
+  <div class="self-end bg-red-200 p-4">Item 3 (aligned to end)</div>
+</div>
+```
+
+- **Explanation**:
+  - `flex-col`: Sets the main axis to vertical.
+  - `items-center`: Centers all the flex items along the horizontal (cross axis).
+  - `self-start`, `self-center`, `self-end`: Override the alignment for individual items along the cross axis (horizontal).
+
+---
+
+### Example 2: Using `justify-content` (Main Axis = Horizontal, Cross Axis = Vertical)
+
+In this example, the main axis is **horizontal** (using `flex-row`), and the `justify-content` property aligns flex items along the **horizontal** (main axis). The cross axis is **vertical**.
+
+```html
+<div class="flex justify-center items-stretch h-64">
+  <div class="self-start bg-blue-200 p-4">Item 1 (aligned to top)</div>
+  <div class="self-center bg-green-200 p-4">Item 2 (centered vertically)</div>
+  <div class="self-end bg-red-200 p-4">Item 3 (aligned to bottom)</div>
+</div>
+```
+
+- **Explanation**:
+  - `flex-row`: Sets the main axis to horizontal (default).
+  - `justify-center`: Centers the flex items along the main axis (horizontal).
+  - `items-stretch`: Stretches all flex items to fill the vertical (cross axis).
+  - `self-start`, `self-center`, `self-end`: Override the alignment for individual items along the cross axis (vertical).
+
+---
+
+## Practice Flexbox
+Practice Flexbox here for Next.js 14: [Knights of the Flexbox Table](https://knightsoftheflexboxtable.com/)
+
+---
